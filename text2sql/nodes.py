@@ -1,4 +1,6 @@
-from tools import get_tables, get_tables_tool, get_table_schemas_and_samples, get_table_schemas_tool, get_tables_semantic_search, get_distinct_values_tool
+from text2sql.tools import get_tables, get_tables_tool, get_table_schemas_and_samples, get_table_schemas_tool, get_distinct_values_tool
+from text2sql.retrieval import get_tables_semantic_search
+from pathlib import Path
 
 from langchain_community.utilities import SQLDatabase
 from langgraph.graph import StateGraph,  MessagesState, START, END
@@ -28,7 +30,7 @@ class State(MessagesState):
     secondary_input_tokens: list[int] = Field(default=[], description="Number of tokens to tool LLM")
     secondary_output_tokens: list[int] = Field(default=[], description="Number of tokens tool LLM")
 
-with open(r'src\V4\prompts\fix_llm_prompt.txt', 'r') as f:
+with open(Path(__file__).resolve().parent / 'prompts' / 'fix_llm_prompt.txt', 'r') as f:
     tables_by_domain = f.read()    
 
 def get_tables_by_domain():

@@ -35,7 +35,7 @@ database = SQLDatabase.from_uri("mysql+pymysql://readonly-agent:bird@localhost:3
 
 model_name = "Qwen3-4B"
 model_path = "/home/012155624/.cache/huggingface/hub/models--Qwen--Qwen3-4B/snapshots/1cfa9a7208912126459214e8b04321603b3df60c/"
-#tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct", token='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')
+#tokenizer = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B-Instruct", token=os.environ['HF_TOKEN'])
 max_completion_tokens=2048
 
 if args.env == 'local':

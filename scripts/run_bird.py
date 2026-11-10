@@ -1,6 +1,10 @@
-from agents import BaselineAgent, LLMSearchAgent, SemanticSearchAgent, LLMSearchGenAgent
 import sys
 from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+
+from text2sql.agents import BaselineAgent, LLMSearchAgent, SemanticSearchAgent, LLMSearchGenAgent
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from statistics import mean, median, stdev
@@ -153,9 +157,7 @@ predicated_path = run_BIRD_test(agent_name=agent_name,llm_path=llm_path, max_com
               data_subset=data_subset, max_workers=max_workers, error_catching=error_catching)
 
 if eval:
-    # Go up to 'code' directory, then into mini_dev_main
-    code_dir = Path(__file__).resolve().parent.parent.parent  # Up 2 levels to 'code'
-    mini_dev_path = code_dir / 'mini_dev_main'
+    mini_dev_path = REPO_ROOT / 'mini_dev_main'
 
     sys.path.insert(0, str(mini_dev_path))
 
